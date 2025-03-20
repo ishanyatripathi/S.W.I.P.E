@@ -4,7 +4,7 @@ import os
 import socket
 
 PORT = 8000
-FILE_PATH = r"C:\Users\smrit\AppData\Local\Programs\Python\Python312\example.txt"
+FILE_PATH = r"file_path"
 DIRECTORY = os.path.dirname(FILE_PATH)
 
 if not os.path.exists(FILE_PATH):
