@@ -6,8 +6,8 @@ import os
 import time
 
 # ✅ Use the same file path
-FILE_PATH = r"C:\Users\smrit\AppData\Local\Programs\Python\Python312\example.txt"
-SERVER_IP = "192.168.90.144"  # Receiver's IP
+FILE_PATH = r"file_path"
+SERVER_IP = "Receiver's IP"  
 PORT = 5001
 
 # Swipe detection settings
