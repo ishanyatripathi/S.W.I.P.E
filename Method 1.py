@@ -5,21 +5,17 @@ import socket
 import os
 import time
 
-# ✅ Use the same file path
 FILE_PATH = r"file_path"
-SERVER_IP = "Receiver's IP"  
+SERVER_IP = "Receiver's IP"
 PORT = 5001
 
-# Swipe detection settings
-SWIPE_THRESHOLD = 200  # Pixels moved to register a swipe
-FRAME_HISTORY = 10  # Number of frames to track movement
+SWIPE_THRESHOLD = 200
+FRAME_HISTORY = 10
 
-# Initialize MediaPipe Hands
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(min_detection_confidence=0.7, min_tracking_confidence=0.7)
 mp_draw = mp.solutions.drawing_utils
 
-# Function to send the file
 def send_file():
     if not os.path.exists(FILE_PATH):
         print(f"File '{FILE_PATH}' not found! Please check the path.")
@@ -40,35 +36,30 @@ def send_file():
     print(f"File '{filename}' sent successfully!")
     client_socket.close()
 
-# Hand swipe detection
 def detect_swipe():
     cap = cv2.VideoCapture(0)
-    x_positions = []  # Store X positions of the hand
+    x_positions = []
 
     while True:
         success, frame = cap.read()
         if not success:
             break
 
-        frame = cv2.flip(frame, 1)  # Mirror the image
+        frame = cv2.flip(frame, 1)
         rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
         result = hands.process(rgb_frame)
 
         if result.multi_hand_landmarks:
             for hand_landmarks in result.multi_hand_landmarks:
-                # Track index finger tip (landmark 8)
                 index_x = int(hand_landmarks.landmark[8].x * frame.shape[1])
 
-                # Store movement history
                 x_positions.append(index_x)
                 if len(x_positions) > FRAME_HISTORY:
                     x_positions.pop(0)
 
-                # Draw landmarks on the hand
                 mp_draw.draw_landmarks(frame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
 
-                # Check for swipe
                 if len(x_positions) >= FRAME_HISTORY:
                     start_x, end_x = x_positions[0], x_positions[-1]
 
@@ -89,6 +80,4 @@ def detect_swipe():
     cap.release()
     cv2.destroyAllWindows()
 
-# Run swipe detection
 detect_swipe()
-
