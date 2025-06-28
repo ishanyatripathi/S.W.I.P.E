@@ -1,6 +1,7 @@
+![image](https://github.com/user-attachments/assets/b116bc63-7be6-4fba-98d3-8d50a4643b3c)
 
 
-Swipe File Transfer is a Python-based application that enables users to send files over a network using hand swipe gestures detected via a webcam or through an HTTP file server. It leverages OpenCV, MediaPipe, and Socket Programming for gesture-based transfer and also provides an HTTP-based file-sharing option.
+S.W.I.P.E (Seamless Wireless Interaction for Packet Exchange) is a Python-based application that enables users to send files over a network using hand swipe gestures detected via a webcam or through an HTTP file server. It leverages OpenCV, MediaPipe, and Socket Programming for gesture-based transfer and also provides an HTTP-based file-sharing option.
 
 🔹 Features
 
