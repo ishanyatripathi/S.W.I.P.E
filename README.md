@@ -49,3 +49,5 @@ Press 'q' to exit.
 Start the HTTP server to allow file downloads:
 
 The file will be accessible at:http://192.168.0.0:port/filename.extension
+
+LICENSE: MIT License
